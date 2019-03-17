@@ -7,3 +7,16 @@ before_install:
 
 script:
   - docker run hoacaphe/docker-react npm run test -- --coverage
+
+deploy:
+  provider: elasticbeanstalk
+  region: "ap-southeast-1"
+  app: "docker"
+  env: "Docker-env"
+  bucket-name: "elasticbeanstalk-ap-southeast-1-011436892268"
+  bucket-path: "docker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key:
+    secure: "$AWS_SECRET_ACCESS_KEY"
